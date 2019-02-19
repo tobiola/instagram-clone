@@ -23,4 +23,4 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://raw.githubusercontent.com/tobiola/instagram-clone/master/Images/instagram.gif' title='Video Walkthrough' width='300px' alt='Video Walkthrough' />
+<img src='https://raw.githubusercontent.com/tobiola/instagram-clone/master/Images/instagram1.gif' title='Video Walkthrough' width='300px' alt='Video Walkthrough' />
