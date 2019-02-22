@@ -30,6 +30,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         let db = Firestore.firestore()
         let user = Auth.auth().currentUser!
 
+
         let caption = commentField.text!
 
         
@@ -52,7 +53,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                     
                         db.collection("posts").addDocument(data: [
                             "url" : downloadUrl,
-                            "userId" : Auth.auth().currentUser!.uid,
+                            "author" : Auth.auth().currentUser?.displayName ?? "user_404",
                             "caption" : caption
                         ]) { err in
                             if let err = err {

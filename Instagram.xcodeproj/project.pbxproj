@@ -14,6 +14,7 @@
 		247106C022123C6900010A3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 247106BE22123C6900010A3A /* LaunchScreen.storyboard */; };
 		247106CB22123C6900010A3A /* InstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247106CA22123C6900010A3A /* InstagramTests.swift */; };
 		247106D622123C6900010A3A /* InstagramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247106D522123C6900010A3A /* InstagramUITests.swift */; };
+		247ABDF6221E1E3C00B0D114 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247ABDF5221E1E3C00B0D114 /* CommentCell.swift */; };
 		24DB7401221B477C007AB971 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24DB7400221B477C007AB971 /* GoogleService-Info.plist */; };
 		24DB7403221B6344007AB971 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB7402221B6344007AB971 /* LoginViewController.swift */; };
 		24DB741D221B8F10007AB971 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB741C221B8F10007AB971 /* PostCell.swift */; };
@@ -56,6 +57,7 @@
 		247106D122123C6900010A3A /* InstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		247106D522123C6900010A3A /* InstagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramUITests.swift; sourceTree = "<group>"; };
 		247106D722123C6900010A3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		247ABDF5221E1E3C00B0D114 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		24DB7400221B477C007AB971 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24DB7402221B6344007AB971 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		24DB741C221B8F10007AB971 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				24DB7402221B6344007AB971 /* LoginViewController.swift */,
 				24DB741C221B8F10007AB971 /* PostCell.swift */,
 				24DB741E221B8FD1007AB971 /* FeedViewController.swift */,
+				247ABDF5221E1E3C00B0D114 /* CommentCell.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -383,6 +387,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -450,6 +455,7 @@
 				24DB741F221B8FD1007AB971 /* FeedViewController.swift in Sources */,
 				243AEF96221A6E3900EE1CD4 /* CameraViewController.swift in Sources */,
 				24DB741D221B8F10007AB971 /* PostCell.swift in Sources */,
+				247ABDF6221E1E3C00B0D114 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
