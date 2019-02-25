@@ -18,6 +18,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let commentBar = MessageInputBar()
     var showsCommentBar = false
     var posts: [QueryDocumentSnapshot] = []
+    var selectedPost: QueryDocumentSnapshot!
+    let refreshPosts = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,23 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(keyboardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        refresh()
+        refreshPosts.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshPosts
 
+    }
+    
+    @objc func refresh() {
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (snapshot, error) in
+            if let _ = error {
+                print("error has occured")
+            } else {
+                self.posts = snapshot!.documents
+                self.tableView.reloadData()
+            }
+        }
     }
     
     @objc func keyboardWillBeHidden(note: Notification) {
@@ -93,6 +111,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        
+        var comment = text
+        comment = (Auth.auth().currentUser!.displayName ?? "") + ": " + comment
+        
+        let db = Firestore.firestore()
+ db.collection("posts").document(selectedPost.documentID).updateData([
+            "comments": FieldValue.arrayUnion([comment])
+            ])
+        
+        self.tableView.reloadData()
+        
         commentBar.inputTextView.text = nil
         showsCommentBar = false
         becomeFirstResponder()
@@ -115,8 +144,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
-        let post = self.posts[indexPath.section].data()
-        let comments = post["comments"] as? [String] ?? []
+        let post = self.posts[indexPath.section]
+        let comments = post.data()["comments"] as? [String] ?? []
         
     
         
@@ -124,8 +153,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
             let imageUrl = URL(string: post["url"] as! String)!
 
-            cell.authorLabel.text = post["author"] as? String
-            cell.captionLabel.text = post["caption"] as? String
+            cell.authorLabel.text = post.data()["author"] as? String
+            cell.captionLabel.text = post.data()["caption"] as? String
             // cell.photoView.af_setImage(withURL: imageUrl)
        
             cell.photoView.af_setImage(withURL: imageUrl, placeholderImage: UIImage(named: "image_placeholder"), completion: { (response) in
@@ -146,13 +175,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
-        let comments = post["comments"] as? [String] ?? []
+    
+        let post = posts[indexPath.section]
+        let comments = post.data()["comments"] as? [String] ?? []
         if indexPath.row == comments.count + 1 {
             showsCommentBar = true
             becomeFirstResponder()
         commentBar.inputTextView.becomeFirstResponder()
+            selectedPost = post
+
         } else {
+
             showsCommentBar = false
             becomeFirstResponder()
             commentBar.inputTextView.becomeFirstResponder()

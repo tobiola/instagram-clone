@@ -64,7 +64,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                         }
                     
                 }
-                print("there is an error")
         }
         
         
